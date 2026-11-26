@@ -14,19 +14,15 @@ This package follows OpenCode plugin conventions and is ready to be published to
 
 ## Install
 
-### Option 1: OpenCode CLI (after npm publish)
+### Option 1: OpenCode CLI
 
 ```sh
-# global install (recommended for personal use across repos)
 opencode plugin opencode-memory-work -g
-
-# or project/global config install via CLI, depending on your OpenCode version
-# opencode plugin add opencode-memory-work -g
 ```
 
 Restart OpenCode after installing.
 
-### Option 2: Add to `opencode.json` (recommended for projects)
+### Option 2: Add to `opencode.json`
 
 Add to your project `opencode.json` / `opencode.jsonc`, or global config at `~/.config/opencode/opencode.json` (Windows: `%USERPROFILE%\.config\opencode\opencode.json`):
 
@@ -40,7 +36,7 @@ Add to your project `opencode.json` / `opencode.jsonc`, or global config at `~/.
 
 OpenCode installs npm plugins through its normal plugin mechanism on startup. Restart OpenCode after changing config.
 
-### Option 3: Local development / before npm publish
+### Option 3: Local development
 
 Build the plugin locally:
 
