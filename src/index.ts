@@ -8,7 +8,7 @@ const MEMORY_PROMPT = [
   'It is one cheap call and returns an index plus a git-computed staleness verdict per doc.',
   'A `fresh` doc means its covered paths are unchanged since it was verified — trust it and skip re-exploring those paths.',
   'A `stale` or `unknown` doc is a hint only: verify against the real code, and it will point you at files that drifted.',
-  'When you had to derive something the hard way or found a stale doc, write it back with `memory_save` and refresh `verified_at`.',
+  'When you verify new findings or resolve a stale doc, save them with `memory_save` and refresh `verified_at`.',
   'Never write a doc without `covers` globs, and prefer updating an existing doc over adding a near-duplicate.',
   'If memory has nothing relevant, say nothing about it and carry on normally.',
 ].join(' ');
@@ -21,7 +21,7 @@ const WORK_PROMPT = [
   'WHEN a task spans more than one session, call `work_status` with no arguments to see what is already open.',
   'If a folder matches your task, read it with `work_status({slug})` before exploring the codebase and continue from its Remaining work section.',
   'If none matches and the task is genuinely multi-session, call `work_start` to create one.',
-  'Keep the README current: after a decision is settled, and ALWAYS before the session ends, call `work_update` with the section bodies that changed.',
+  'Keep the README current: after key decisions and before ending a session, call `work_update` with the sections that changed.',
   'Replace section bodies with the current truth — do not append a changelog.',
   'Use `backlog` for work that is known but not being done now; it survives sessions.',
 ].join(' ');
@@ -54,5 +54,4 @@ export const MemoryWorkPlugin: Plugin = async ({directory}) => {
   };
 };
 
-export const PalContinuityPlugin = MemoryWorkPlugin;
 export default MemoryWorkPlugin;

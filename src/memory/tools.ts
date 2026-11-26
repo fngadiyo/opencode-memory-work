@@ -62,7 +62,7 @@ export function createMemoryTools(cwd: string) {
               fresh.uncommitted.length > 0 ? `note (not staleness): uncommitted changes in covered paths — ${fresh.uncommitted.join(', ')}` : '',
               fresh.status === 'fresh'
                 ? 'TRUSTED: covered paths are unchanged. You may skip re-exploring them.'
-                : 'HINT ONLY: verify against the code before relying on this. The drift itself tells you where to look:',
+                : 'Verify against the code before relying on this. Changed files indicate where to recheck:',
               driftHint(fresh.changed),
               fresh.status === 'fresh' ? '' : 'After verifying, update this doc and refresh `verified_at` with memory_save.',
               '',
@@ -107,7 +107,7 @@ export function createMemoryTools(cwd: string) {
         },
         async execute(args) {
           const s = settings();
-          if (!s.write) return `Writing to ${s.dir} is disabled. Set {"write": true} in memory.json (project root) or ~/.pal/memory.json.`;
+          if (!s.write) return `Writing to ${s.dir} is disabled. Set {"write": true} in memory.json or ~/.opencode-memory-work/memory.json.`;
           const id = (args.id ?? '').trim();
           const kind = (args.kind ?? '').trim();
           const title = (args.title ?? '').trim();
@@ -130,7 +130,7 @@ export function createMemoryTools(cwd: string) {
             body: body.startsWith('#') ? body : `# ${title}\n\n${body}`,
           }, args.overwrite === true);
           if (!result.ok) return `Error: ${result.error}`;
-          return `Saved ${result.id} in ${s.dir} (${covers.length} cover pattern(s), verified at HEAD).\nNext session will see it in memory_lookup and can skip re-exploring those paths.`;
+          return `Saved ${result.id} in ${s.dir} (${covers.length} cover pattern(s), verified at HEAD).`;
         },
       }),
     },

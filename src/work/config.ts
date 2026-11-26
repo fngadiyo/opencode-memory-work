@@ -19,8 +19,14 @@ function coerce(raw: Record<string, unknown>): Partial<WorkflowSettings> {
 
 export function resolveWorkflowSettings(cwd: string): WorkflowSettings {
   const project = readJson(join(cwd, 'workflow.json'));
-  const user = readJson(join(homedir(), '.pal', 'workflow.json'));
-  return {...DEFAULTS, ...(project ? coerce(project) : {}), ...(user ? coerce(user) : {})};
+  const user = readJson(join(homedir(), '.opencode-memory-work', 'workflow.json'));
+  const legacy = readJson(join(homedir(), '.pal', 'workflow.json'));
+  return {
+    ...DEFAULTS,
+    ...(legacy ? coerce(legacy) : {}),
+    ...(project ? coerce(project) : {}),
+    ...(user ? coerce(user) : {}),
+  };
 }
 
 export function workRoot(settings: WorkflowSettings, cwd: string): string {

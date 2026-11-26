@@ -43,12 +43,12 @@ export function createWorkTools(cwd: string) {
           if (!s.write) return `Writing to ${s.dir} is disabled. Set {"write": true} in workflow.json.`;
           const result = createWork(s, cwd, {title: args.title, goal: args.goal, slug: args.slug?.trim() || undefined});
           if (!result.ok) return `Error: ${result.error}`;
-          return `Created work folder ${s.dir}/${result.slug}/README.md\n\nKeep it current as you work: work_update({slug, current_state, decisions, remaining_work, ...}).\nA README updated at the end of a session is what makes the next session cheap.`;
+          return `Created work folder ${s.dir}/${result.slug}/README.md\n\nUpdate it as work progresses with work_update({slug, current_state, decisions, remaining_work, ...}).`;
         },
       }),
       work_status: tool({
         description:
-          'Read work folder state. Call with no args to list folders. Pass slug to read full README — do this FIRST when resuming a task before exploring the codebase.',
+          'Read work folder state. With no args, lists folders. With a slug, returns the full README for resuming a task.',
         args: {
           slug: tool.schema.string().optional().describe('Work folder name. Omit to list all.'),
         },

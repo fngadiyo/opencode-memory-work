@@ -8,8 +8,8 @@ npm run typecheck
 npm run build
 ```
 
-## Before opening a PR
+## Pull requests
 
 - Keep the plugin lightweight and file/git based.
-- Preserve pal-compatible `.memory` and `.work` conventions where practical.
-- Do not publish to npm or create a release unless explicitly requested by the maintainer.
+- Preserve compatibility with existing `.memory` and `.work` file conventions where practical.
+- Include a clear description of behavior changes.

@@ -1,7 +1,7 @@
 {
   "name": "opencode-memory-work",
   "version": "0.0.1",
-  "description": "OpenCode plugin for pal-style .memory and .work continuity across sessions",
+  "description": "OpenCode plugin for persistent .memory and .work continuity across sessions",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
@@ -41,7 +41,7 @@
     "workflow",
     "continuity",
     "agent",
-    "pal"
+    "session"
   ],
   "publishConfig": {
     "access": "public"

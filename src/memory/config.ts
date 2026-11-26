@@ -27,9 +27,11 @@ function coerce(raw: Record<string, unknown>): Partial<MemorySettings> {
 
 export function resolveMemorySettings(cwd: string): MemorySettings {
   const project = readJson(join(cwd, 'memory.json'));
-  const user = readJson(join(homedir(), '.pal', 'memory.json'));
+  const user = readJson(join(homedir(), '.opencode-memory-work', 'memory.json'));
+  const legacy = readJson(join(homedir(), '.pal', 'memory.json'));
   return {
     ...DEFAULTS,
+    ...(legacy ? coerce(legacy) : {}),
     ...(project ? coerce(project) : {}),
     ...(user ? coerce(user) : {}),
   };
